@@ -6,18 +6,20 @@
           "Action": [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
-            "logs:PutLogEvents",
-            "dynamodb:GetItem",
-            "dynamodb:Query",
-            "dynamodb:PutItem",
-            "dynamodb:Batch*",
-            "dynamodb:DeleteItem",
-            "ssm:PutParameter",
-            "ssm:GetParameter",
-            "kms:Decrypt"
+            "logs:PutLogEvents"
+            
           ],
           "Effect": "Allow",
           "Resource": "*"
+        },
+        {
+          "Action": [
+            "sqs:ReceiveMessage",
+            "sqs:DeleteMessage",
+            "sqs:GetQueueAttributes"
+          ],
+          "Effect": "Allow",
+          "Resource": "arn:aws:sqs:eu-central-1:905418349556:async_queue"
         }
       ],
       "Version": "2012-10-17"
@@ -25,11 +27,24 @@
     "resource_type": "iam_policy"
   },
   "sqs_handler-role": {
-    "predefined_policies": [],
+    "predefined_policies": ["AWSLambdaSQSQueueExecutionRole"],
     "principal_service": "lambda",
     "custom_policies": [
       "lambda-basic-execution"
     ],
     "resource_type": "iam_role"
+  },
+  "async_queue": {
+    "resource_type": "sqs_queue",
+    "fifo_queue": false,
+    "region": "eu-central-1",
+    "visibility_timeout": 300,
+    "delay_seconds": 0,
+    "maximum_message_size": 1024,
+    "message_retention_period": 60,
+    "receive_message_wait_time_seconds": 0,
+    "policy": {},
+    "redrive_policy": {},
+    "content_based_deduplication": false
   }
 }
