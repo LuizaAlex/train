@@ -59,7 +59,7 @@
   },
  
 "sns_handler-role": {
-    "predefined_policies": ["AmazonSNSFullAccess"],
+    "predefined_policies": ["AWSLambdaBasicExecutionRole"],
     "principal_service": "lambda",
     "custom_policies": [
       "lambda-basic-execution"
