@@ -24,7 +24,7 @@ import java.util.Map;
 	targetTopic = "lambda_topic"
 )
 @DependsOn(
-	name = "sns_topic",
+	name = "lambda_topic",
 	resourceType = ResourceType.SNS_TOPIC
 )
 public class SnsHandler implements RequestHandler<SNSEvent, Void> {

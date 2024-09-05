@@ -22,7 +22,9 @@
         },
         {
           "Action": [
-            "sns:Publish"
+            "sns:Publish",
+            "sns:Receive",
+            "sns:Subscribe"
           ],
           "Effect": "Allow",
           "Resource": "arn:aws:sns:eu-central-1:905418349556:lambda_topic"
@@ -55,7 +57,8 @@
     "redrive_policy": {},
     "content_based_deduplication": false
   },
-  "sns_handler-role": {
+ 
+"sns_handler-role": {
     "predefined_policies": ["AWSLambdaSNSInvokePolicy"],
     "principal_service": "lambda",
     "custom_policies": [
@@ -68,4 +71,5 @@
     "region": "eu-central-1",
     "event_sources": []
   }
+
 }
